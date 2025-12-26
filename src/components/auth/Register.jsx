@@ -1,3 +1,4 @@
+import { supabase } from "../../supabase";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Eye, EyeOff, User, Lock, Mail, AlertCircle, Loader2, CheckCircle } from 'lucide-react';
@@ -315,3 +316,4 @@ const Register = ({ onSwitchToLogin }) => {
 };
 
 export default Register;
+
