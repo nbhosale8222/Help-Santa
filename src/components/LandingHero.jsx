@@ -292,46 +292,20 @@ function LandingHero() {
         </div>
 
         {/* Enhanced Description */}
-        <p className="text-sm sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-md font-medium">
-          A winter-inspired gamified learning experience where holiday stories, engaging challenges, and cozy visuals make SQL practice unforgettable.
+        <p
+          className="text-sm sm:text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed font-semibold"
+          style={{
+            fontFamily: 'Arial, Helvetica, sans-serif',
+            background: 'rgba(0,0,0,0.45)',
+            borderRadius: '12px',
+            padding: '1.2rem 1.5rem',
+            boxShadow: '0 2px 16px 0 rgba(0,0,0,0.25)',
+            textShadow: '0 2px 8px rgba(0,0,0,0.7)'
+          }}
+        >
+          On Christmas Eve, a mysterious Enemy attacks Santa’s sleigh, scattering the reindeer and leaving Santa lost in a storm. The world thinks Santa is just late, but the truth is far worse — he’s missing, and hope is fading.
         </p>
 
-        {/* Enhanced Play Button */}
-        <div className="flex flex-wrap justify-center gap-4 mt-8">
-          <button
-            className="play-button px-8 py-4 md:px-12 md:py-5 rounded-full font-black text-lg md:text-xl text-white tracking-wider border-2 border-white/20 button-bounce"
-            onClick={handleStartGame}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-            onMouseDown={(e) => {
-              // Create ripple effect
-              const button = e.currentTarget;
-              const rect = button.getBoundingClientRect();
-              const size = Math.max(rect.width, rect.height);
-              const x = e.clientX - rect.left - size / 2;
-              const y = e.clientY - rect.top - size / 2;
-              
-              const ripple = document.createElement('span');
-              ripple.className = 'ripple-effect';
-              ripple.style.width = ripple.style.height = size + 'px';
-              ripple.style.left = x + 'px';
-              ripple.style.top = y + 'px';
-              
-              button.appendChild(ripple);
-              setTimeout(() => ripple.remove(), 600);
-            }}
-          >
-            {/* Play Icon */}
-            <span className="inline-flex items-center gap-3">
-              <span className={`text-2xl ${isHovering ? 'shake-animation' : ''}`}>🎮</span>
-              <span>PLAY NOW</span>
-              <span className={`text-xl ${isHovering ? 'magic-sparkle' : ''}`}>⚡</span>
-            </span>
-            
-            {/* Hover glow effect */}
-            <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-blue-900/20 via-emerald-900/20 to-purple-900/20 transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}></div>
-          </button>
-        </div>
       </div>
     </section>
   );

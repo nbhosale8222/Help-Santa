@@ -95,7 +95,7 @@ function HomePage() {
       {/* Welcome message for users who just watched the video */}
       {localStorage.getItem("videoWatched") === "true" && currentStep === 0 && (
         <div className="absolute top-4 right-4 z-50 bg-gradient-to-r from-gray-900/90 to-blue-900/90 text-white px-4 py-2 rounded-lg backdrop-blur-sm border border-white/30 animate-fade-in">
-          <div className="text-sm font-medium">Presented by Late But Latest ! </div>
+          <div className="text-sm font-medium">Presented by Innovators 2099 ! </div>
         </div>
       )}
 

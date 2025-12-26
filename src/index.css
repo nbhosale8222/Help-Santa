@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  font-family: 'Pixelify Sans',system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif !important;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: bold !important;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -26,12 +26,18 @@ a:hover {
   color: #535bf2;
 }
 body {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: bold !important;
   cursor: url('/cursor.png'), auto;
   margin: 0;
   min-width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+* {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: bold !important;
+}
 }
 
 /* Add a new class for components that need centering: */

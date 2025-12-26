@@ -82,7 +82,7 @@ const StoryCarousel = () => {
                   alt={
                     items[currentPage].title || `Story page ${currentPage + 1}`
                   }
-                  className="w-full h-64 md:h-80 object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-64 md:h-80 object-contain bg-black transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>

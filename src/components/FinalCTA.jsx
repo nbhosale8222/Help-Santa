@@ -21,7 +21,7 @@ const FinalCTA = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto shadow-lg shadow-cyan-400/50 mb-4" />
           <p className="text-sm sm:text-base md:text-lg text-white/80 max-w-md mx-auto">
-            Your SQL mastery journey awaits. Are you ready?
+            Embark on a magical quest: Use your SQL skills to rescue Santa from the dragon's lair and bring joy back to waiting children! 🎅🐉✨
           </p>
         </div>
 
@@ -69,15 +69,44 @@ const FinalCTA = () => {
             delay="3.5s"
           />
 
+          {/* Autoplay video (looping, muted) placed above the CTA button */}
+          <div className="w-full flex justify-center mb-6">
+            <video
+              src="/Santa_s_Mysterious_Jungle_Cage.mp4"
+              className="w-full max-w-4xl rounded-xl shadow-2xl"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+            />
+          </div>
+
           {/* Enhanced Responsive PixelCard */}
           <div className="scale-75 sm:scale-90 md:scale-100 transition-transform duration-300">
             <PixelCard variant="blue">
-              <h1
-                className="cursor-pointer  text-lg sm:text-xl md:text-2xl lg:text-3xl font-black tracking-widest px-4 py-2 text-center hover:scale-105 transition-transform duration-200"
-                onClick={() => nav("/map")}
-              >
-                {"PLAY NOW"}
-              </h1>
+              <div className="flex flex-col items-center gap-2">
+                {/* Festive decorations above */}
+                <div className="flex gap-2 text-xl md:text-2xl lg:text-3xl animate-pulse">
+                  <span role="img" aria-label="snowflake">❄️</span>
+                  <span role="img" aria-label="sparkles">✨</span>
+                  <span role="img" aria-label="snowflake">❄️</span>
+                </div>
+                <button
+                  className="cursor-pointer bg-gradient-to-r from-cyan-400 to-blue-500 text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold tracking-widest px-6 py-2 rounded-xl shadow-lg border-2 border-white/60 hover:scale-105 hover:from-blue-400 hover:to-cyan-500 hover:border-cyan-300 transition-all duration-200 flex items-center gap-2"
+                  onClick={() => nav("/map")}
+                >
+                  <span role="img" aria-label="game controller">🎮</span>
+                  PLAY NOW
+                  <span role="img" aria-label="tree">🎄</span>
+                </button>
+                {/* Festive decorations below */}
+                <div className="flex gap-2 text-xl md:text-2xl lg:text-3xl animate-pulse">
+                  <span role="img" aria-label="sparkles">✨</span>
+                  <span role="img" aria-label="snowflake">❄️</span>
+                  <span role="img" aria-label="sparkles">✨</span>
+                </div>
+              </div>
             </PixelCard>
           </div>
         </div>
@@ -92,13 +121,13 @@ const FinalCTA = () => {
             />
           </span>
           <div className="tracking-widest font-semibold text-base md:text-lg text-white drop-shadow-sm">
-            SQL QUEST
+            Mission Rescue Santa
           </div>
         </div>
 
         <div className="text-center sm:text-right leading-snug">
           <div className="font-semibold text-white/90 uppercase tracking-wide text-sm md:text-base">
-            Late But Latest
+            Innovators 2099
           </div>
           <div className="text-white/70 text-xs md:text-sm">SRM institute of science and technologies, KTR</div>
         </div>
