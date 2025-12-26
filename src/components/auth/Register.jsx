@@ -1,8 +1,6 @@
 import { supabase } from "../../supabase";
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Eye, EyeOff, User, Lock, Mail, AlertCircle, Loader2, CheckCircle } from 'lucide-react';
-import { registerUser, clearError, setError } from '../../redux/authSlice';
 
 const Register = ({ onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
@@ -14,9 +12,8 @@ const Register = ({ onSwitchToLogin }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
-
-  const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state) => state.auth);
+const [error, setError] = useState(null);
+const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +24,7 @@ const Register = ({ onSwitchToLogin }) => {
     
     // Clear error when user starts typing
     if (error) {
-      dispatch(clearError());
+      setError(null);
     }
 
     // Check password strength
@@ -60,7 +57,7 @@ const Register = ({ onSwitchToLogin }) => {
 
   const validateForm = () => {
     if (!formData.username.trim()) {
-      dispatch(setError('Username is required'));
+      setError("...");
       return false;
     }
     
@@ -98,11 +95,45 @@ const Register = ({ onSwitchToLogin }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  setIsLoading(true);
+  setError(null);
+
+  // 1️⃣ Create user in Supabase Auth
+  const { data, error: authError } = await supabase.auth.signUp({
+    email: formData.email.trim(),
+    password: formData.password,
+  });
+
+  if (authError) {
+    setError(authError.message);
+    setIsLoading(false);
+    return;
+  }
+
+  // 2️⃣ Insert into profiles table
+  const { error: profileError } = await supabase
+    .from("profiles")
+    .insert({
+      id: data.user.id,           // MUST match auth.users.id
+      name: formData.username.trim(),
+      email: formData.email.trim(),
+      role: "player",
+    });
+
+  if (profileError) {
+    setError(profileError.message);
+    setIsLoading(false);
+    return;
+  }
+
+  setIsLoading(false);
+  alert("Account created successfully!");
+};
+
 
     dispatch(registerUser({
       username: formData.username.trim(),
@@ -316,4 +347,5 @@ const Register = ({ onSwitchToLogin }) => {
 };
 
 export default Register;
+
 
