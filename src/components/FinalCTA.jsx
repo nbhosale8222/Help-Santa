@@ -39,7 +39,7 @@ const FinalCTA = () => {
       {/* Background music before PLAY NOW */}
       <audio
         ref={audioRef}
-        src="/musicbeforeplaybutton.mp3"
+        src="./musicbeforeplaybutton.mp3"
         loop
         volume={0.5}
         style={{ display: "none" }}
@@ -119,7 +119,7 @@ const FinalCTA = () => {
           {/* Autoplay video (looping, muted) placed above the CTA button */}
           <div className="w-full flex justify-center mb-6">
             <video
-              src="/Santa_s_Mysterious_Jungle_Cage.mp4"
+              src="./Santa_s_Mysterious_Jungle_Cage.mp4"
               className="w-full max-w-4xl rounded-xl shadow-2xl"
               autoPlay
               muted

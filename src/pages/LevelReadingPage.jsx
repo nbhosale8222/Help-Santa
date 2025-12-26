@@ -9,7 +9,7 @@ export default function LevelReadingPage() {
   const { currentLevel } = useSelector((state) => state.game);
   const navigate = useNavigate();
   const [iframeError, setIframeError] = useState(false);
-  const htmlFile = `/document/level${levelId}.html`;
+  const htmlFile = `./document/level${levelId}.html`;
   const iframeRef = useRef(null);
 
   // Make iframe content background transparent

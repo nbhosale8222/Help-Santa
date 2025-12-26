@@ -18,25 +18,13 @@ function HomePage() {
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const user = useSelector(selectUser);
 
-  // ✅ FIXED: The component now checks localStorage to decide if the video should play.
-  const [isVideoPlaying, setIsVideoPlaying] = useState(() => {
-    return localStorage.getItem("videoWatched") !== "true";
-  });
+  // ✅ Video always plays on first load, never skipped
+  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
 
   const handleIntroEnd = () => {
-    // ✅ FIXED: Set the flag in localStorage so the video doesn't play again on refresh.
-    localStorage.setItem("videoWatched", "true");
-
-    // Update the Redux state here as well to keep it consistent for a full game restart
+    // Video finished playing, now show homepage
     dispatch(updateState({ videoWatched: true }));
-
-    // ✅ NEW: Instead of just hiding the video, navigate to the step-based homepage
     setIsVideoPlaying(false);
-
-    // Optional: You can navigate to a specific route if you want
-    navigate("/"); // If you have a separate home route
-
-    // Or just show the step-based content (current behavior but more explicit)
   };
 
   // ✅ NEW: If you want to navigate to a separate route, uncomment this and create the route
@@ -53,7 +41,7 @@ function HomePage() {
   // }
 
   if (isVideoPlaying) {
-    return <StoryIntroVideo onEnd={handleIntroEnd} onSkip={handleIntroEnd} />;
+    return <StoryIntroVideo onEnd={handleIntroEnd} />;
   }
 
   const components = [

@@ -9,7 +9,7 @@ import MapScreen from './pages/MapScreen';
 import LevelReadingPage from './pages/LevelReadingPage';
 import AuthGuard from './components/auth/AuthGuard';
 import UserProfile from './components/UserProfile';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import MusicControl from './components/MusicControl';
 
@@ -39,7 +39,7 @@ function App() {
       {/* Persistent background music */}
       <audio
         ref={audioRef}
-        src="/sorrythisbeforeplay.mp3"
+        src="./sorrythisbeforeplay.mp3"
         loop
         volume={0.5}
         style={{ display: "none" }}

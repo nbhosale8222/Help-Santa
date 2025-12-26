@@ -57,7 +57,9 @@ const SQLChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/groq', {
+      // Use API base URL from environment variable (for itch.io to call Vercel)
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || window.location.origin;
+      const response = await fetch(`${apiBaseUrl}/api/groq`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +174,7 @@ const SQLChatbot = () => {
           title="Ask Santa for Help! 🎅"
         >
           <img 
-            src="/Gemini_Generated_Image_wgkyk7wgkyk7wgky (1).png" 
+            src="./Gemini_Generated_Image_wgkyk7wgkyk7wgky (1).png" 
             alt="Santa" 
             className="w-12 h-12 rounded-full object-cover group-hover:scale-110 transition-transform"
           />
@@ -188,7 +190,7 @@ const SQLChatbot = () => {
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
                 <img 
-                  src="/Gemini_Generated_Image_wgkyk7wgkyk7wgky (1).png" 
+                  src="./Gemini_Generated_Image_wgkyk7wgkyk7wgky (1).png" 
                   alt="Santa" 
                   className="w-full h-full object-cover"
                 />

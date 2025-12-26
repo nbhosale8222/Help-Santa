@@ -184,7 +184,7 @@ function LevelPage() {
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <img
-          src="/mapbg.webp"
+          src="./mapbg.webp"
           alt="Background"
           className="w-full h-full object-cover opacity-80"
         />

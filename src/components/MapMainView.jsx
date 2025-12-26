@@ -489,7 +489,7 @@ const MapMainView = () => {
                 {/* Stage Image - Fixed positioning */}
                 <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 z-0">
                   <img
-                    src="/stage.webp"
+                    src="./stage.webp"
                     alt="Stage"
                     className="w-32 h-16 md:w-40 md:h-20 object-contain opacity-80"
                   />
@@ -528,7 +528,7 @@ const MapMainView = () => {
             {showVictoryVideo && (
               <div className="fixed inset-0 z-50 bg-black flex items-center ">
                 <video
-                  src="/Generating_Christmas_Fantasy_Adventure_Video.mp4"
+                  src="./Generating_Christmas_Fantasy_Adventure_Video.mp4"
                   autoPlay
                   muted
                   playsInline
