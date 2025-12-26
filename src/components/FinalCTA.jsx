@@ -7,11 +7,58 @@ import { useSelector } from "react-redux";
 const FinalCTA = () => {
   const nav = useNavigate();
   const game = useSelector((state) => state.game);
+  const audioRef = React.useRef(null);
+  const [musicPlaying, setMusicPlaying] = React.useState(false);
+
+  // Play/Pause music
+  const handleMusicToggle = () => {
+    if (!audioRef.current) return;
+    if (musicPlaying) {
+      audioRef.current.pause();
+      setMusicPlaying(false);
+    } else {
+      audioRef.current.play();
+      setMusicPlaying(true);
+    }
+  };
+
+  // Stop music when PLAY NOW is clicked
+  const handlePlayNow = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setMusicPlaying(false);
+    }
+    nav("/map");
+  };
 
   return (
     <section
       className="relative bg-gradient-to-t from-black via-blue-950 to-black snap-start flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-12 text-white overflow-hidden"
     >
+      {/* Background music before PLAY NOW */}
+      <audio
+        ref={audioRef}
+        src="/musicbeforeplaybutton.mp3"
+        loop
+        volume={0.5}
+        style={{ display: "none" }}
+      />
+      {/* Play/Pause Music Button */}
+      <div className="absolute top-8 left-8 z-20">
+        <button
+          onClick={handleMusicToggle}
+          className={`flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold shadow-lg border-2 border-white/30 focus:outline-none transition-all duration-300 ${musicPlaying ? 'animate-spin-slow' : ''}`}
+          style={{ minWidth: 120 }}
+        >
+          {musicPlaying ? (
+            <span role="img" aria-label="pause">⏸️</span>
+          ) : (
+            <span role="img" aria-label="play">▶️</span>
+          )}
+          {musicPlaying ? 'Pause Music' : 'Play Music'}
+        </button>
+      </div>
       {/* Enhanced Hero Section with Icons */}
       <div className="relative flex flex-col items-center justify-center flex-1 w-full max-w-7xl mx-auto py-12">
         {/* Title Section */}
@@ -94,7 +141,7 @@ const FinalCTA = () => {
                 </div>
                 <button
                   className="cursor-pointer bg-gradient-to-r from-cyan-400 to-blue-500 text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold tracking-widest px-6 py-2 rounded-xl shadow-lg border-2 border-white/60 hover:scale-105 hover:from-blue-400 hover:to-cyan-500 hover:border-cyan-300 transition-all duration-200 flex items-center gap-2"
-                  onClick={() => nav("/map")}
+                  onClick={handlePlayNow}
                 >
                   <span role="img" aria-label="game controller">🎮</span>
                   PLAY NOW

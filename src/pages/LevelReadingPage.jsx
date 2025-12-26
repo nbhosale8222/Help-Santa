@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import SQLChatbot from "../components/SQLChatbot";
 import LogoutButton from "../components/auth/LogoutButton";
 
 export default function LevelReadingPage() {
   const { levelId } = useParams();
+  const { currentLevel } = useSelector((state) => state.game);
   const navigate = useNavigate();
   const [iframeError, setIframeError] = useState(false);
   const htmlFile = `/document/level${levelId}.html`;
@@ -97,7 +99,7 @@ export default function LevelReadingPage() {
         </div>
       </div>
       
-      <SQLChatbot />
+      {currentLevel >= 4 && <SQLChatbot />}
     </div>
   );
 }

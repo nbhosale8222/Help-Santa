@@ -330,9 +330,9 @@ const MapMainView = () => {
 
       <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 to-black/50" />
 
-      {/* Header Stats */}
-      <div className="fixed top-0 left-0 right-0 z-50 p-4">
-        <div className="flex items-center justify-between max-w-6xl mx-auto">
+      {/* Header Stats - positioned lower to avoid overlap with top-left controls */}
+      <div className="fixed top-20 left-0 right-0 z-40 p-4">
+        <div className="flex items-center justify-between max-w-6xl mx-auto pl-64">
           {/* Lives or Reset Button */}
           {!allSkipsUsed ? (
             <div className="flex items-center space-x-2 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-2 border border-red-500/30">
