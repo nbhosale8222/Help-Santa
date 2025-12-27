@@ -22,8 +22,8 @@ import Level10 from "../components/levels/Level10";
 const LevelHeader = ({  lives, onSkip, onBack }) => {
   const canSkip = lives > 0;
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 ">
-      <div className="container mx-auto px-2 sm:px-4 py-3 flex items-center justify-between relative">
+    <header className="fixed top-0 left-0 right-0 z-40 ">
+      <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-between relative">
         {/* Back Button */}
         <button
           onClick={onBack}
@@ -184,7 +184,7 @@ function LevelPage() {
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <img
-          src="/mapbg.webp"
+          src="./mapbg.webp"
           alt="Background"
           className="w-full h-full object-cover opacity-80"
         />
@@ -204,8 +204,8 @@ function LevelPage() {
         ))}
       </div>
 
-      {/* Logout top-right */}
-      <div className="fixed top-4 right-4 z-50">
+      {/* Logout top-right - positioned to not overlap with Skip button */}
+      <div className="fixed top-20 right-4 z-50">
         <LogoutButton />
       </div>
 
@@ -336,7 +336,7 @@ function LevelPage() {
         }
       `}</style>
       
-      <SQLChatbot />
+      {levelData && levelData.id >= 4 && <SQLChatbot />}
     </div>
   );
 }

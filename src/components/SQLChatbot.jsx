@@ -11,7 +11,7 @@ const SQLChatbot = () => {
     {
       id: 1,
       type: 'bot',
-      content: "Hi! I'm your **SQL assistant**. I can help you with:\n\n• **SQL queries** and syntax\n• **Database concepts** and operations\n• **Game level guidance** (without spoilers!)\n• **Best practices** and examples\n\nWhat would you like to know about SQL?",
+      content: "Ho Ho Ho! 🎅 I'm **Santa**, and I'm here to help you rescue me! I can guide you with:\n\n• **SQL queries** and syntax\n• **Database concepts** and operations\n• **Level hints** (without giving away the answers!)\n• **Best practices** and examples\n\nWhat do you need help with on your quest?",
       timestamp: new Date()
     }
   ]);
@@ -57,7 +57,9 @@ const SQLChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/groq', {
+      // Use API base URL from environment variable (for itch.io to call Vercel)
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || window.location.origin;
+      const response = await fetch(`${apiBaseUrl}/api/groq`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -167,11 +169,16 @@ const SQLChatbot = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group"
-          aria-label="Open SQL Assistant"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-red-600 to-green-600 hover:from-red-500 hover:to-green-500 text-white p-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group border-4 border-white"
+          aria-label="Ask Santa for Help"
+          title="Ask Santa for Help! 🎅"
         >
-          <MessageCircle size={24} className="group-hover:scale-110 transition-transform" />
-          <div className="absolute -top-2 -right-2 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+          <img 
+            src="./Gemini_Generated_Image_wgkyk7wgkyk7wgky (1).png" 
+            alt="Santa" 
+            className="w-12 h-12 rounded-full object-cover group-hover:scale-110 transition-transform"
+          />
+          <div className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
         </button>
       )}
 
@@ -179,14 +186,18 @@ const SQLChatbot = () => {
       {isOpen && (
         <div className="chat-container fixed bottom-6 right-6 z-50 w-96 h-[500px] bg-gray-900 rounded-2xl shadow-2xl border border-gray-700 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center justify-between">
+          <div className="bg-gradient-to-r from-red-600 to-green-600 text-white p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                <Bot size={20} />
+              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                <img 
+                  src="./Gemini_Generated_Image_wgkyk7wgkyk7wgky (1).png" 
+                  alt="Santa" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
-                <h3 className="font-bold text-sm">SQL Assistant</h3>
-                <p className="text-xs text-blue-100">Level {currentLevel} • Ask me anything about SQL!</p>
+                <h3 className="font-bold text-sm">🎅 Ask Santa</h3>
+                <p className="text-xs text-red-100">Level {currentLevel} • Santa is here to help!</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">

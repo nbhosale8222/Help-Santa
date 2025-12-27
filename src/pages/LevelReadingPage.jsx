@@ -1,13 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import SQLChatbot from "../components/SQLChatbot";
 import LogoutButton from "../components/auth/LogoutButton";
 
 export default function LevelReadingPage() {
   const { levelId } = useParams();
+  const { currentLevel } = useSelector((state) => state.game);
   const navigate = useNavigate();
   const [iframeError, setIframeError] = useState(false);
-  const htmlFile = `/document/level${levelId}.html`;
+  const htmlFile = `./document/level${levelId}.html`;
   const iframeRef = useRef(null);
 
   // Make iframe content background transparent
@@ -66,20 +68,20 @@ export default function LevelReadingPage() {
         </p>
         
         <div 
-          className="w-full mb-8 rounded-lg shadow-2xl overflow-hidden border-2 border-cyan-400/50 relative"
+          className="w-full mb-8 rounded-lg shadow-2xl overflow-hidden border-2 border-cyan-400/50 relative bg-black/40 backdrop-blur-sm"
         >
           {iframeError ? (
-            <div className="p-8 text-center text-red-600 font-bold bg-white/90">
+            <div className="p-8 text-center text-red-600 font-bold bg-black/60 backdrop-blur-md">
               Document not found. Please check that <br />
               <code>public/document/level{levelId}.html</code> exists and is accessible.
             </div>
           ) : (
-            <div className="p-6 md:p-8">
+            <div className="p-6 md:p-8 bg-transparent">
               <iframe
                 ref={iframeRef}
                 src={htmlFile}
                 title={`Level ${levelId} Content`}
-                className="w-full h-[450px] md:h-[550px] border-none"
+                className="w-full h-[450px] md:h-[550px] border-none bg-transparent"
                 style={{ background: 'transparent' }}
                 onError={() => setIframeError(true)}
               />
@@ -97,7 +99,7 @@ export default function LevelReadingPage() {
         </div>
       </div>
       
-      <SQLChatbot />
+      {currentLevel >= 4 && <SQLChatbot />}
     </div>
   );
 }

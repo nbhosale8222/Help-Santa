@@ -15,6 +15,11 @@ const GameProgressBar = ({ currentLevel, completedLevels, totalLevels }) => {
   const progressPercentage = (completedLevels.length / totalLevels) * 100;
   
   const getLevelIcon = (levelNum) => {
+    // Special Christmas-themed icons for specific levels
+    if (levelNum === 3) return "🎅"; // Santa at level 3
+    if (levelNum === 7) return "🛷"; // Santa's sleigh at level 7
+    if (levelNum === 10) return "🎁"; // Gift at level 10
+    
     const level = levels.find(l => l.id === levelNum);
     if (!level) return "🗡️";
     
@@ -325,9 +330,9 @@ const MapMainView = () => {
 
       <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 to-black/50" />
 
-      {/* Header Stats */}
-      <div className="fixed top-0 left-0 right-0 z-50 p-4">
-        <div className="flex items-center justify-between max-w-6xl mx-auto">
+      {/* Header Stats - positioned lower to avoid overlap with top-left controls */}
+      <div className="fixed top-20 left-0 right-0 z-40 p-4">
+        <div className="flex items-center justify-between max-w-6xl mx-auto pl-64">
           {/* Lives or Reset Button */}
           {!allSkipsUsed ? (
             <div className="flex items-center space-x-2 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-2 border border-red-500/30">
@@ -484,7 +489,7 @@ const MapMainView = () => {
                 {/* Stage Image - Fixed positioning */}
                 <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 z-0">
                   <img
-                    src="/stage.webp"
+                    src="./stage.webp"
                     alt="Stage"
                     className="w-32 h-16 md:w-40 md:h-20 object-contain opacity-80"
                   />
@@ -523,7 +528,7 @@ const MapMainView = () => {
             {showVictoryVideo && (
               <div className="fixed inset-0 z-50 bg-black flex items-center ">
                 <video
-                  src="/Generating_Christmas_Fantasy_Adventure_Video.mp4"
+                  src="./Generating_Christmas_Fantasy_Adventure_Video.mp4"
                   autoPlay
                   muted
                   playsInline

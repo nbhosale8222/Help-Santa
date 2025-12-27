@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 
-const StoryIntroVideo = ({ onEnd, onSkip }) => {
+const StoryIntroVideo = ({ onEnd }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
+      // Preload video
+      video.load();
+      
       const attemptPlay = async () => {
         try {
           video.volume = 0.8;
@@ -35,7 +38,7 @@ const StoryIntroVideo = ({ onEnd, onSkip }) => {
       <video
         ref={videoRef}
         className="w-full h-full object-cover"
-        src="/Santa_s_Dark_Christmas_Adventure_Begins.mp4"
+        src="./Santa_s_Dark_Christmas_Adventure_Begins.mp4"
         autoPlay
         playsInline
         preload="auto"
@@ -43,12 +46,6 @@ const StoryIntroVideo = ({ onEnd, onSkip }) => {
         onEnded={onEnd}
         volume={0.8}
       />
-      <button
-        onClick={onSkip}
-        className="absolute top-6 right-6 bg-black/60 hover:bg-black/80 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-blur-sm border border-white/20 text-sm font-medium z-10"
-      >
-        Skip Intro →
-      </button>
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
         <div className="flex items-center space-x-2 text-white/80 text-sm">
           <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
